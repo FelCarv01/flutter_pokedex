@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_pokedex/common/errors/failure.dart';
 import 'package:flutter_pokedex/common/models/pokemon.dart';
 import 'package:flutter_pokedex/common/repositories/pokemon_repository.dart';
 import 'package:flutter_pokedex/features/home/pages/home_error.dart';
@@ -15,14 +16,16 @@ class HomeContainer extends StatelessWidget {
       future: repository.getAllPokemons(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return HomeLoading();
+          return const HomeLoading();
         }
         if (snapshot.connectionState == ConnectionState.done &&
             snapshot.hasData) {
           return HomePage(list: snapshot.data!);
         }
         if (snapshot.hasError) {
-          return HomeError(error: snapshot.error.toString());
+          return HomeError(
+            error: (snapshot.error as Failure).message!,
+          );
         }
         return Container();
       },
