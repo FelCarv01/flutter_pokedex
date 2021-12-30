@@ -61,10 +61,11 @@ class PokemonItemWidget extends StatelessWidget {
                             .toList(),
                       ),
                       Flexible(
-                          child: Container(
-                        height: 100,
-                        width: 100,
-                      )),
+                        child: Container(
+                          height: 100,
+                          width: 100,
+                        ),
+                      ),
                     ],
                   ),
                 ],

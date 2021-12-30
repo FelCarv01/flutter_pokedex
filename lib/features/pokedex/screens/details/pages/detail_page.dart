@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pokedex/common/models/pokemon.dart';
+import 'package:flutter_pokedex/features/pokedex/screens/details/pages/widgets/details_appbar_widget.dart';
 
 class DetailPage extends StatelessWidget {
   const DetailPage({
@@ -13,30 +14,13 @@ class DetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(pokemon.name),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24.0),
-        child: Column(
-          children: [
-            SizedBox(
-              height: 400,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 12.0),
-                child: ListView(
-                  children: list
-                      .map((e) => Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(e.name),
-                          ))
-                      .toList(),
-                  scrollDirection: Axis.horizontal,
-                ),
-              ),
-            )
-          ],
-        ),
+      body: Stack(
+        children: [
+          DetailAppBarWidget(
+            pokemon: pokemon,
+            onBack: () {},
+          )
+        ],
       ),
     );
   }
